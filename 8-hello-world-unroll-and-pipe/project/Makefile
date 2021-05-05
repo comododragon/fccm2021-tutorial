@@ -81,7 +81,7 @@ VPP := v++
 CMD_ARGS = $(BUILD_DIR)/vadd.xclbin
 SDCARD := sd_card
 
-include $(XF_PROJ_ROOT)/common/includes/opencl/opencl.mk
+include $(XF_PROJ_ROOT)/../common/includes/opencl/opencl.mk
 CXXFLAGS += $(opencl_CXXFLAGS) -Wall -O0 -g -std=c++11
 LDFLAGS += $(opencl_LDFLAGS)
 
@@ -91,8 +91,8 @@ endif
 
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
-CXXFLAGS += -I$(XF_PROJ_ROOT)/common/includes/xcl2
-HOST_SRCS += $(XF_PROJ_ROOT)/common/includes/xcl2/xcl2.cpp ./src/host.cpp 
+CXXFLAGS += -I$(XF_PROJ_ROOT)/../common/includes/xcl2
+HOST_SRCS += $(XF_PROJ_ROOT)/../common/includes/xcl2/xcl2.cpp ./src/host.cpp 
 # Host compiler global settings
 CXXFLAGS += -fmessage-length=0
 LDFLAGS += -lrt -lstdc++ 
