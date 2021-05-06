@@ -50,10 +50,8 @@ int main(int argc, char** argv) {
 
     // Create the test data
     std::generate(source_image.begin(), source_image.end(), std::rand);
-    for(int i = 0; i < HISTOGRAM_SIZE; i++) {
-        source_hist_hw[i] = 0;
+    for(int i = 0; i < HISTOGRAM_SIZE; i++)
         source_hist_sw[i] = 0;
-    }
     for(int i = 0; i < IMAGE_SIZE; i++)
         source_hist_sw[source_image[i]] += 1;
 
@@ -91,7 +89,7 @@ int main(int argc, char** argv) {
     // Buffers are allocated using CL_MEM_USE_HOST_PTR for efficient memory and
     // Device-to-host communication
     OCL_CHECK(err, cl::Buffer buffer_image(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, image_size_bytes, source_image.data(), &err));
-    OCL_CHECK(err, cl::Buffer buffer_hist(context, CL_MEM_USE_HOST_PTR, histogram_size_bytes, source_hist_hw.data(), &err));
+    OCL_CHECK(err, cl::Buffer buffer_hist(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, histogram_size_bytes, source_hist_hw.data(), &err));
 
     int size = IMAGE_SIZE;
     OCL_CHECK(err, err = krnl.setArg(0, buffer_image));
