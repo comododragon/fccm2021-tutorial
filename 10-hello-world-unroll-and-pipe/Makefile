@@ -17,4 +17,4 @@ clean:
 .PHONY: cleanall
 cleanall:
 	make -C project/ cleanall
-	rm -rf *.jou *.log project/.ipcache
+	rm -rf *.jou *.log project/.ipcache project/run_app.sh
