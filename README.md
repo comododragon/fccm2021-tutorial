@@ -40,10 +40,8 @@ A Xilinx Vitis 2020.2 installation with some additional packages is required. Pl
     $ make build TARGET=<TARGET>
     ```
     where ```<TARGET>``` may be **hw** for hardware synthesis, **hw_emu** for hardware emulation and **sw_emu** for software emulation.
-    For **hw_emu** and **sw_emu**, please skip step 4.
-    For **hw**, please skip step 5 and 9.
-4. If you selected **hw** as the target, the generated SD card image at ```01-hello-world/project/package.hw/sd_card.img``` must be cloned to a microSD card and booted on a ZCU104 platform. For other targets you can skip this step;
-5. If you selected **hw_emu** or **sw_emu**, you can run QEMU to boot the SD image through an emulator:
+4. *(Skip this step if you selected **hw_emu** or **sw_emu** as ```TARGET```)* If you selected **hw** as the target, the generated SD card image at ```01-hello-world/project/package.hw/sd_card.img``` must be cloned to a microSD card and booted on a ZCU104 platform. For other targets you can skip this step;
+5. *(Skip this step if you selected **hw_emu** or **sw_emu** as ```TARGET```)* If you selected **hw_emu** or **sw_emu**, you can run QEMU to boot the SD image through an emulator:
     ```
     $ make run TARGET=<TARGET>
     ```
