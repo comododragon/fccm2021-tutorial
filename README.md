@@ -6,19 +6,19 @@ FCCM 2021 Tutorial: FPGA High-Level Synthesis: Good Practices for Quality and Pr
 
 This is the GIT repository for the tutorial "FPGA High-Level Synthesis: Good Practices for Quality and Productivity", presented at the "The 29th IEEE International Symposium On Field-Programmable Custom Computing Machines".
 
-Included here are several examples of High-Level Synthesis codes targetting a Xilinx ZCU104 FPGA platform. The toolchain version used is 2020.2.
+Included here are several examples of High-Level Synthesis codes targetting a Xilinx ZCU104 FPGA platform. The toolchain version used is Xilinx Vitis 2020.2.
 
 # Authors
 
-Andre Bannwart Perina
-Leandro Rosa
-Vanderlei Bonato
+* Andre Bannwart Perina
+* Leandro Rosa
+* Vanderlei Bonato
 
 # Licence
 
-Apache-2.0 is the licence used for this repository. See the LICENSE files for more details.
+Apache-2.0 is the licence used for this repository. See the ```LICENSE``` files for more details.
 
-The code skeleton used for each project -- including the supporting files at ```common/includes```, the inner Makefiles, etc. --- were based on the Hello World example of the "Vitis Accel Examples Repository" (see https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/hello_world).These files are also licensed under Apache-2.0.
+The code skeleton used for each project -- including the supporting files at ```common/includes```, the inner Makefiles, etc. --- were based on the Hello World example of the "Vitis Accel Examples Repository" (see https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/hello_world ). These files are also licensed under Apache-2.0.
 
 # Installation
 
@@ -39,9 +39,10 @@ A Xilinx Vitis 2020.2 installation with some additional packages is required. Pl
      ```
     $ make build TARGET=<TARGET>
     ```
-    where ```<TARGET>``` may be *hw* for hardware synthesis, *hw_emu* for hardware emulation and *sw_emu* for software emulation.
-4a. If you selected *hw* as the target, the generated SD card image at ```01-hello-world/project/package.hw/sd_card.img``` must be cloned to a microSD card and booted on a ZCU104 platform.
-4b. If you selected *hw_emu* or *sw_emu*, you can run QEMU to boot the SD image through an emulator:
+    where ```<TARGET>``` may be **hw** for hardware synthesis, **hw_emu** for hardware emulation and **sw_emu** for software emulation.
+    For **hw_emu** and **sw_emu**, skip to step 5.
+4. If you selected **hw** as the target, the generated SD card image at ```01-hello-world/project/package.hw/sd_card.img``` must be cloned to a microSD card and booted on a ZCU104 platform.
+5. If you selected **hw_emu** or **sw_emu**, you can run QEMU to boot the SD image through an emulator:
     ```
     $ make run TARGET=<TARGET>
     ```
