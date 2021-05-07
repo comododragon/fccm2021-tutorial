@@ -41,24 +41,24 @@ A Xilinx Vitis 2020.2 installation with some additional packages is required. Pl
     ```
     where ```<TARGET>``` may be **hw** for hardware synthesis, **hw_emu** for hardware emulation and **sw_emu** for software emulation.
 4. *(Skip this step if you selected **hw_emu** or **sw_emu** as ```TARGET```)* If you selected **hw** as the target, the generated SD card image at ```01-hello-world/project/package.hw/sd_card.img``` must be cloned to a microSD card and booted on a ZCU104 platform. For other targets you can skip this step;
-5. *(Skip this step if you selected **hw_emu** or **sw_emu** as ```TARGET```)* If you selected **hw_emu** or **sw_emu**, you can run QEMU to boot the SD image through an emulator:
+5. *(Skip this step if you selected **hw** as ```TARGET```)* If you selected **hw_emu** or **sw_emu**, you can run QEMU to boot the SD image through an emulator:
     ```
     $ make run TARGET=<TARGET>
     ```
-5. After the Linux system finishes to boot, CD to the SD card partition containing the hello world:
+6. After the Linux system finishes to boot, CD to the SD card partition containing the hello world:
     ```
     $ cd /mnt/sd-mmcblk0p1
     ```
-6. Run the initialisation script:
+7. Run the initialisation script:
     ```
     $ source ./init.sh
     ```
-7. Finally run the application:
+8. Finally run the application:
     ```
     $ ./run_app.sh
     ```
-8. A message saying ```TEST_PASSED``` should appear on your screen;
-9. You can quit the emulation by pressing ```CTRL``` + ```A``` and then ```X```. For those who prefer to perform a safe shutdown, you can run ```poweroff``` prior to killing the emulator.
+9. A message saying ```TEST_PASSED``` should appear on your screen;
+10. *(Skip this step if you selected **hw** as ```TARGET```)* You can quit the emulation by pressing ```CTRL``` + ```A``` and then ```X```. For those who prefer to perform a safe shutdown, you can run ```poweroff``` prior to killing the emulator.
 
 # Description of the Examples
 
