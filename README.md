@@ -45,20 +45,22 @@ A Xilinx Vitis 2020.2 installation with some additional packages is required. Pl
     ```
     $ make run TARGET=<TARGET>
     ```
-6. After the Linux system finishes to boot, CD to the SD card partition containing the hello world:
+6. After the Linux system finishes to boot, run the following script to cd to the SD card partition containing the hello world, initialise the environment and run the example:
     ```
-    $ cd /mnt/sd-mmcblk0p1
+    $ /mnt/sd-mmcblk0p1/init_and_run.sh
     ```
-7. Run the initialisation script:
-    ```
-    $ source ./init.sh
-    ```
-8. Finally run the application:
-    ```
-    $ ./run_app.sh
-    ```
-9. A message saying ```TEST_PASSED``` should appear on your screen;
-10. *(Skip this step if you selected **hw** as ```TARGET```)* You can quit the emulation by pressing ```CTRL``` + ```A``` and then ```X```. For those who prefer to perform a safe shutdown, you can run ```poweroff``` prior to killing the emulator.
+7. A message saying ```TEST_PASSED``` should appear on your screen;
+8. *(Skip this step if you selected **hw** as ```TARGET```)* You can quit the emulation by pressing ```CTRL``` + ```A``` and then ```X```. For those who prefer to perform a safe shutdown, you can run ```poweroff``` prior to killing the emulator.
+
+Additionally, you can run ```make hls``` to run only the HLS compilation. At end, the HLS report and log are shown using ```less```:
+```
+$ make hls TARGET=hw_emu|hw
+```
+
+You can access these reports after compiled using ```make report```:
+```
+$ make report TARGET=hw_emu|hw
+```
 
 # Description of the Examples
 
