@@ -93,12 +93,18 @@ ifeq ($(TARGET),$(filter $(TARGET),sw_emu hw_emu))
 	$(ECHO) 'export XILINX_VITIS=$$PWD' >> run_app.sh
 	$(ECHO) 'export XCL_EMULATION_MODE=$(TARGET)' >> run_app.sh
 endif
-	$(ECHO) '$(EXECUTABLE) vadd.xclbin' >> run_app.sh
+	$(ECHO) '$(EXECUTABLE) example.xclbin' >> run_app.sh
 	$(ECHO) 'return_code=$$?' >> run_app.sh
 	$(ECHO) 'if [ $$return_code -ne 0 ]; then' >> run_app.sh
 	$(ECHO) 'echo "ERROR: host run failed, RC=$$return_code"' >> run_app.sh
 	$(ECHO) 'fi' >> run_app.sh
 	$(ECHO) 'echo "INFO: host run completed."' >> run_app.sh
+
+	rm -rf init_and_run.sh
+	$(ECHO) '#!/bin/bash' >> init_and_run.sh
+	$(ECHO) '' >> init_and_run.sh
+	$(ECHO) 'cd /mnt/sd-mmcblk0p1; source ./init.sh' >> init_and_run.sh
+	$(ECHO) 'cd /mnt/sd-mmcblk0p1; ./run_app.sh' >> init_and_run.sh
 endif
 check-devices:
 ifndef DEVICE

@@ -72,6 +72,7 @@ BUILD_DIR := ./build_dir.$(TARGET).$(XSA)
 
 # SoC variables
 RUN_APP_SCRIPT = ./run_app.sh
+INIT_RUN_APP_SCRIPT = ./init_and_run.sh
 PACKAGE_OUT = ./package.$(TARGET)
 
 LAUNCH_EMULATOR = $(PACKAGE_OUT)/launch_$(TARGET).sh
@@ -133,6 +134,14 @@ build: check-vitis $(BINARY_CONTAINERS)
 .PHONY: xclbin
 xclbin: build
 
+.PHONY: xo
+xo: $(BINARY_CONTAINER_vadd_OBJS)
+
+.PHONY: report
+report: xo
+	less $(TEMP_DIR)/vadd/vadd/vadd/solution/syn/report/vadd_csynth.rpt
+	less $(TEMP_DIR)/vadd/vadd/vitis_hls.log
+
 ############################## Setting Rules for Binary Containers (Building Kernels) ##############################
 $(TEMP_DIR)/vadd.xo: src/vadd.cpp
 	mkdir -p $(TEMP_DIR)
@@ -186,11 +195,10 @@ else
 endif
 endif
 
-
 ############################## Preparing sdcard ##############################
 sd_card: $(BINARY_CONTAINERS) $(EXECUTABLE) gen_run_app
 ifneq ($(HOST_ARCH), x86)
-	$(VPP) -p $(BUILD_DIR)/vadd.xclbin -t $(TARGET) --platform $(DEVICE) --package.out_dir $(PACKAGE_OUT) --package.rootfs $(EDGE_COMMON_SW)/rootfs.ext4 --package.sd_file $(SD_IMAGE_FILE) --package.sd_file xrt.ini --package.sd_file $(RUN_APP_SCRIPT) --package.sd_file $(EXECUTABLE) -o vadd.xclbin
+	$(VPP) -p $(BUILD_DIR)/vadd.xclbin -t $(TARGET) --platform $(DEVICE) --package.out_dir $(PACKAGE_OUT) --package.rootfs $(EDGE_COMMON_SW)/rootfs.ext4 --package.sd_file $(SD_IMAGE_FILE) --package.sd_file xrt.ini --package.sd_file $(RUN_APP_SCRIPT) --package.sd_file $(INIT_RUN_APP_SCRIPT) --package.sd_file $(EXECUTABLE) -o vadd.xclbin
 endif
 
 ############################## Cleaning Rules ##############################
