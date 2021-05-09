@@ -57,7 +57,7 @@ Additionally, you can run ```make hls``` to run only the HLS compilation. At end
 $ make hls TARGET=hw_emu|hw
 ```
 
-You can access these reports after compiled using ```make report```:
+You can revisit these reports after compiled using ```make report```:
 ```
 $ make report TARGET=hw_emu|hw
 ```
@@ -74,10 +74,10 @@ $ make report TARGET=hw_emu|hw
 * ```08-hello-world-unroll-noexitcond```: hello world example with unroll and no exit condition check
 * ```09-hello-world-large-unroll```: hello world example with large unroll factor
 * ```10-hello-world-unroll-and-pipe```: hello world example unroll and pipeline enabled
-* ```11-dataflow-example```: example of code that could benefit from dataflow optimisation
-* ```12-dataflow-example-implemented```: the example code from ```11-dataflow-example``` but with dataflow implemented
-* ```13-hello-world-arbitrary-precision```: hello world example but using operands with arbitrary precision data type
-* ```14-pipe-loop-carried-dep-solution```: a solution to the ```03-pipe-loop-carried-dep``` dependency problem using shift register
-* ```15-stencil```: a naive stencil implementation
-* ```16-stencil-buffered```: implementation of ```15-stencil``` but using a buffer as a sliding window
-* ```17-stencil-buffered-partitioned```: same as ```16-stencil-buffered```, but the buffer is completely partitioned
+* ```11-pipe-loop-carried-dep-solution```: a solution to the ```03-pipe-loop-carried-dep``` dependency problem using shift register
+* ```12-stencil```: a naive stencil implementation
+* ```13-stencil-buffered```: implementation of ```15-stencil``` but using a buffer as a sliding window
+* ```14-stencil-buffered-partitioned```: same as ```16-stencil-buffered```, but the buffer is completely partitioned
+* ```15-hello-world-arbitrary-precision```: hello world example but using operands with arbitrary precision data type
+* ```16-dataflow-example```: example of code that could benefit from dataflow optimisation
+* ```17-dataflow-example-implemented```: the example code from ```11-dataflow-example``` but with dataflow implemented
