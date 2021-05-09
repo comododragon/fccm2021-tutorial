@@ -79,7 +79,7 @@ LAUNCH_EMULATOR = $(PACKAGE_OUT)/launch_$(TARGET).sh
 RESULT_STRING = TEST PASSED
 
 VPP := v++
-CMD_ARGS = $(BUILD_DIR)/example.xclbin
+CMD_ARGS = $(BUILD_DIR)/vadd.xclbin
 SDCARD := sd_card
 
 include $(XF_PROJ_ROOT)/../common/includes/opencl/opencl.mk
@@ -116,8 +116,8 @@ EMCONFIG_DIR = $(TEMP_DIR)
 EMU_DIR = $(SDCARD)/data/emulation
 
 ############################## Declaring Binary Containers ##############################
-BINARY_CONTAINERS += $(BUILD_DIR)/example.xclbin
-BINARY_CONTAINER_example_OBJS += $(TEMP_DIR)/example.xo
+BINARY_CONTAINERS += $(BUILD_DIR)/vadd.xclbin
+BINARY_CONTAINER_vadd_OBJS += $(TEMP_DIR)/vadd.xo
 
 ############################## Setting Targets ##############################
 CP = cp -rf
@@ -135,24 +135,24 @@ build: check-vitis $(BINARY_CONTAINERS)
 xclbin: build
 
 .PHONY: xo
-xo: $(BINARY_CONTAINER_example_OBJS)
+xo: $(BINARY_CONTAINER_vadd_OBJS)
 
 .PHONY: report
 report: xo
-	less $(TEMP_DIR)/example/example/example/solution/syn/report/example_csynth.rpt
-	less $(TEMP_DIR)/example/example/vitis_hls.log
+	less $(TEMP_DIR)/vadd/vadd/vadd/solution/syn/report/vadd_csynth.rpt
+	less $(TEMP_DIR)/vadd/vadd/vitis_hls.log
 
 ############################## Setting Rules for Binary Containers (Building Kernels) ##############################
-$(TEMP_DIR)/example.xo: src/example.cpp
+$(TEMP_DIR)/vadd.xo: src/vadd.cpp
 	mkdir -p $(TEMP_DIR)
-	$(VPP) $(VPP_FLAGS) -c -k example --temp_dir $(TEMP_DIR)  -I'$(<D)' -o'$@' '$<'
-$(BUILD_DIR)/example.xclbin: $(BINARY_CONTAINER_example_OBJS)
+	$(VPP) $(VPP_FLAGS) -c -k vadd --temp_dir $(TEMP_DIR)  -I'$(<D)' -o'$@' '$<'
+$(BUILD_DIR)/vadd.xclbin: $(BINARY_CONTAINER_vadd_OBJS)
 	mkdir -p $(BUILD_DIR)
 ifeq ($(HOST_ARCH), x86)
-	$(VPP) $(VPP_FLAGS) -l $(VPP_LDFLAGS) --temp_dir $(TEMP_DIR)  -o'$(BUILD_DIR)/example.link.xclbin' $(+)
-	$(VPP) -p $(BUILD_DIR)/example.link.xclbin -t $(TARGET) --platform $(DEVICE) --package.out_dir $(PACKAGE_OUT) -o $(BUILD_DIR)/example.xclbin
+	$(VPP) $(VPP_FLAGS) -l $(VPP_LDFLAGS) --temp_dir $(TEMP_DIR)  -o'$(BUILD_DIR)/vadd.link.xclbin' $(+)
+	$(VPP) -p $(BUILD_DIR)/vadd.link.xclbin -t $(TARGET) --platform $(DEVICE) --package.out_dir $(PACKAGE_OUT) -o $(BUILD_DIR)/vadd.xclbin
 else
-	$(VPP) $(VPP_FLAGS) -l $(VPP_LDFLAGS) --temp_dir $(TEMP_DIR) -o'$(BUILD_DIR)/example.xclbin' $(+)
+	$(VPP) $(VPP_FLAGS) -l $(VPP_LDFLAGS) --temp_dir $(TEMP_DIR) -o'$(BUILD_DIR)/vadd.xclbin' $(+)
 endif
 
 ############################## Setting Rules for Host (Building Host Executable) ##############################
@@ -198,7 +198,7 @@ endif
 ############################## Preparing sdcard ##############################
 sd_card: $(BINARY_CONTAINERS) $(EXECUTABLE) gen_run_app
 ifneq ($(HOST_ARCH), x86)
-	$(VPP) -p $(BUILD_DIR)/example.xclbin -t $(TARGET) --platform $(DEVICE) --package.out_dir $(PACKAGE_OUT) --package.rootfs $(EDGE_COMMON_SW)/rootfs.ext4 --package.sd_file $(SD_IMAGE_FILE) --package.sd_file xrt.ini --package.sd_file $(RUN_APP_SCRIPT) --package.sd_file $(INIT_RUN_APP_SCRIPT) --package.sd_file $(EXECUTABLE) -o example.xclbin
+	$(VPP) -p $(BUILD_DIR)/vadd.xclbin -t $(TARGET) --platform $(DEVICE) --package.out_dir $(PACKAGE_OUT) --package.rootfs $(EDGE_COMMON_SW)/rootfs.ext4 --package.sd_file $(SD_IMAGE_FILE) --package.sd_file xrt.ini --package.sd_file $(RUN_APP_SCRIPT) --package.sd_file $(INIT_RUN_APP_SCRIPT) --package.sd_file $(EXECUTABLE) -o vadd.xclbin
 endif
 
 ############################## Cleaning Rules ##############################
