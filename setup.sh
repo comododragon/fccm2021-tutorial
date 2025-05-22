@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source /opt/xilinx/Vitis/2020.2/settings64.sh
-source /opt/xilinx/petalinux/2020.2/environment-setup-aarch64-xilinx-linux
-export PLATFORM_REPO_PATHS=/opt/xilinx/platforms/xilinx_zcu104_base_202020_1
-export EDGE_COMMON_SW=/opt/xilinx/rootfs/xilinx-zynqmp-common-v2020.2
-export SYSROOT=/opt/xilinx/petalinux/2020.2/sysroots/aarch64-xilinx-linux
+source /data/opt/Xilinx/Vitis/2024.1/settings64.sh
+source /data/perinaa/petalinux/2024.1/environment-setup-cortexa72-cortexa53-xilinx-linux
+export PLATFORM_REPO_PATHS=/data/opt/Xilinx/Vitis/2024.1/base_platforms/xilinx_zcu104_base_202410_1
+export EDGE_COMMON_SW=/data/perinaa/xilinx-zynqmp-common-v2024.1
+export SYSROOT=/data/perinaa/petalinux/2024.1/sysroots/cortexa72-cortexa53-xilinx-linux
