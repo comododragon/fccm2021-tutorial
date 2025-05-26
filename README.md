@@ -2,7 +2,7 @@
 
 FCCM 2021 Tutorial: FPGA High-Level Synthesis: Good Practices for Quality and Productivity
 
-**RELOADED!** This branch is adapted for Vitis 2024.1. Scripts are adapted for infrastructure within the European XFEL. Minor changes should make it work elsewhere (see `setup.sh` file and change paths to your needs).
+> **RELOADED!** This branch is adapted for Vitis 2024.1. Scripts are adapted for infrastructure within the European XFEL. Minor changes should make it work elsewhere (see `setup.sh` file and change paths to your needs). Check section [Update to Vitis 2024.1](#update-to-vitis-2024-1) below for more info on the differences.
 
 # Introduction
 
@@ -85,3 +85,19 @@ $ make report TARGET=hw_emu|hw
 * `15-hello-world-arbitrary-precision`: hello world example but using operands with arbitrary precision data type
 * `16-dataflow-example`: example of code that could benefit from dataflow optimisation
 * `17-dataflow-example-implemented`: the example code from `11-dataflow-example` but with dataflow implemented
+
+# Update to Vitis 2024.1
+
+This repository was updated to work with Vitis 2024.1.
+
+Due to improvements (or not) on the HLS engine over the last years, some information from the original tutorial are not applicable anymore. The following differences are expected when migrating to Vitis 2024.1:
+
+- The `gettingstarted.pdf` is not updated to Vitis 2024.1 yet. The information there is still applicable, just substitute everything that references **Vitis 2020.2** to **Vitis 2024.1**;
+- Resource and latency count from `FCCM-Presentation.pdf` are slightly different compared to Vitis 2024.1. Some exceptions apply, see below:
+    - Example `02-hello-world-auto-pipe` has a longer pipeline depth on Vitis 2024.1 than 2020.2;
+    - Example `03-pipe-loop-carried-dep` shows that an II of 1 was reached for the loop, but that is not true. Logs show that II of 35 was reached, and that is further confirmed by the ttotal latency count (i.e. 143329 cycles, approx. `4092 (iterations) * 35 (II)`);
+    - Example `07-hello-world-unroll` has almost two-fold performance degradation as compared to Vitis 2020.2 results;
+    - Example `08-hello-world-unroll-noexitcond` is the opposite of the above: it has a two-fold performance improvement as compared to Vitis 2020.2 results;
+    - Example `09-hello-world-large-unroll` also better performance here than Vitis 2020.2;
+    - Example `13-stencil-buffered` is not applicable anymore. Vitis 2024.1 now implements some implicit optimisation that already incurs in the performance expected by the complete partitioning optimisation (as performed in `14-stencil-buffered-partitioned`). That means that both examples `13` and `14` provide very similar results, whereas in Vitis 2020.2 the former example had a great performance degradation as compared to the latter. The reason is that Vitis 2020.2 did not automatically optimise example `13`;
+        - Slides 118-120 from `FCCM-Presentation.pdf` are therefore not applicable for the newer Vitis;

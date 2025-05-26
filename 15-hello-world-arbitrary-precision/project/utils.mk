@@ -103,8 +103,8 @@ endif
 	rm -rf init_and_run.sh
 	$(ECHO) '#!/bin/bash' >> init_and_run.sh
 	$(ECHO) '' >> init_and_run.sh
-	$(ECHO) 'cd /mnt/sd-mmcblk0p1; source ./init.sh' >> init_and_run.sh
-	$(ECHO) 'cd /mnt/sd-mmcblk0p1; ./run_app.sh' >> init_and_run.sh
+	$(ECHO) 'cd /mnt; source ./init.sh' >> init_and_run.sh
+	$(ECHO) 'cd /mnt; ./run_app.sh' >> init_and_run.sh
 endif
 check-devices:
 ifndef DEVICE

@@ -10,6 +10,7 @@ extern "C" {
 void vadd(two_apint16_t *in1, ap_int<16> *out, int size) {
     for(unsigned int i = 0; i < size; i++) {
 #pragma HLS LOOP_TRIPCOUNT max=4096
+//#pragma HLS unroll factor=8 skip_exit_check
         two_apint16_t tmp = in1[i];
 
         out[i] = tmp.in1 + tmp.in2;

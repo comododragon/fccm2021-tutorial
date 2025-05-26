@@ -1,4 +1,4 @@
-DEVICE=xilinx_zcu104_base_202020_1
+DEVICE=xilinx_zcu104_base_202410_1
 HOST_ARCH=aarch64
 TARGET=sw_emu
 
