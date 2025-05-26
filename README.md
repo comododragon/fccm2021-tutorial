@@ -2,7 +2,7 @@
 
 FCCM 2021 Tutorial: FPGA High-Level Synthesis: Good Practices for Quality and Productivity
 
-> **RELOADED!** This branch is adapted for Vitis 2024.1. Scripts are adapted for infrastructure within the European XFEL. Minor changes should make it work elsewhere (see `setup.sh` file and change paths to your needs). Check section [Update to Vitis 2024.1](#update-to-vitis-2024-1) below for more info on the differences.
+> **RELOADED!** This branch is adapted for Vitis 2024.1. Scripts are adapted for infrastructure within the European XFEL. Minor changes should make it work elsewhere (see `setup.sh` file and change paths to your needs). Check section [Update to Vitis 2024.1](#update-to-vitis-20241) below for more info on the differences.
 
 # Introduction
 
